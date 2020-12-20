@@ -1,0 +1,70 @@
+<head>
+    <script>
+          
+
+        function score(){
+           
+            value = localStorage["score"];
+            var time=localStorage['timetaken'];
+            document.getElementById('time').innerHTML+=timetaken();
+            
+           
+            
+            if (value<4){
+                document.getElementById('result').innerHTML='I AM SORRY! YOU HAVE FAILED THE TEST <br><br> BETTER LUCK NEXT TIME';
+                document.getElementById('button').innerHTML='TRY AGAIN';
+        }
+            else{
+                document.getElementById('result').innerHTML='CONGRATULATIONS! YOU PASSED THE TEST';
+                document.getElementById('button').innerHTML='TAKE ANOTHER TEST';
+            }
+            document.getElementById('score').innerHTML+=' '+value;
+            //backdisable();
+        }
+        
+        function timetaken(){
+            var duration=localStorage['timetaken'];
+            var milliseconds = parseInt((duration % 1000) / 100),
+                seconds = Math.floor((duration / 1000) % 60),
+                minutes = Math.floor((duration / (1000 * 60)) % 60),
+                hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+                 hours = (hours < 10) ? "0" + hours : hours;
+                    minutes = (minutes < 10) ? "0" + minutes : minutes;
+                seconds = (seconds < 10) ? "0" + seconds : seconds;
+                return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+        }
+        
+    </script>
+    <style>
+        body{
+            background-image: linear-gradient(to bottom right, rgb(172, 148, 189), rgb(169, 219, 51));
+        }
+        #button{
+            border-radius: 5px;
+            background-color: rgb(82, 235, 163);
+            width:200px;
+            height:30px;
+            border:1px solid;
+            visibility: hidden;
+        }
+
+        #button:focus{
+            outline:0;
+        }
+    </style>
+</head>
+
+
+
+<body onload=score()>
+  <center> <h1>QUIZ RESULTS</h1>
+    
+    <h1 id="score">YOUR QUIZ SCORE : </h1>
+    <h1 id="time">TIME TAKEN TO COMPLETE THE TEST : </h1>
+    <h1 id='result'></h1>
+    <button id='button' onclick="location.href='javascript:history.go(-1);'" disabled></button>
+    
+
+</center> 
+</body>
